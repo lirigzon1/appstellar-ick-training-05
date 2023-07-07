@@ -1,3 +1,4 @@
 namespace: webapp-lirigzon
 ConfigMapName : db-configmap
 secretName: db-secret
+portNumber:  80
