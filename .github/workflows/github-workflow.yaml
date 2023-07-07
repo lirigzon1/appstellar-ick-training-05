@@ -42,5 +42,5 @@ jobs:
         run: aws eks update-kubeconfig --name=my-eks-cluster --region=eu-central-1
 
       - name: Deploy Helm chart
-        run: helm upgrade webapp-lirigzon ../helm/webapp --install 
+        run: helm upgrade webapp-lirigzon ./helm/webapp --install 
           
