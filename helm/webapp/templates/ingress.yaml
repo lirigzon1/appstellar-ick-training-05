@@ -4,6 +4,7 @@ metadata:
    name: alb-ingress
    namespace: {{.Values.namespace}}
    annotations: 
+    alb.ingress.kubernetes.io/target-type: 'ip'
     alb.ingress.kubernetes.io/group.name: common-alb
     alb.ingress.kubernetes.io/scheme: internet-facing
 spec:
