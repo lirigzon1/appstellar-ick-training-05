@@ -3,6 +3,16 @@ data "aws_vpc" "this"{
         Environment ="dev"
     }
 }
+module "s3_object" {
+
+    source = "./modules/s3"
+    bucket_name = aws_s3_bucket.example.bucket
+    file_key = "my first bucket file "
+    file_source = "./this-is-my-file.txt"
+     
+}
+
+
 
 resource "aws_s3_bucket" "example" {
   bucket = "my-tf-test-bucket-lirigzon"
