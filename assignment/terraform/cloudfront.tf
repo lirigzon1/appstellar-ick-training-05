@@ -12,7 +12,7 @@ module "web_client_cdn" {
   }
   origin = {
     web_client = {
-      domain_name = "lirigzon.assignment-4.appstellar.training"
+      domain_name = "assignment-4-workspace-lirigzon"
       custom_origin_config = {
         http_port              = 80
         https_port             = 443
