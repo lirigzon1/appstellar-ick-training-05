@@ -10,25 +10,25 @@ resource "aws_cloudfront_origin_access_control" "web_client" {
 module "web_client_cdn" {
   source  = "terraform-aws-modules/cloudfront/aws"
   version = "3.2.1"
-  #aliases = [""]
+  aliases = ["lirigzon.appstellar.training"]
 
   comment         = "CDN for web-client"
   enabled         = true
   is_ipv6_enabled = true
   price_class     = "PriceClass_All"
 
-default_root_object = "index.html"
+  default_root_object = "index.html"
 
   create_origin_access_identity = false
 
- origin = {
+  origin = {
     web_client = {
       domain_name              = module.web_client.s3_bucket_bucket_domain_name
       origin_access_control_id = aws_cloudfront_origin_access_control.web_client.id
     }
   }
 
-default_cache_behavior = {
+  default_cache_behavior = {
     target_origin_id       = "web_client"
     viewer_protocol_policy = "redirect-to-https"
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
@@ -41,8 +41,8 @@ default_cache_behavior = {
   }
 
 
-  #   viewer_certificate = {
-  #     acm_certificate_arn = "arn:aws:acm:us-east-1:135367859851:certificate/1032b155-22da-4ae0-9f69-e206f825458b"
-  #     ssl_support_method  = "sni-only"
-  #   }
+  viewer_certificate = {
+    acm_certificate_arn = module.acm.acm_certificate_arn
+    ssl_support_method  = "sni-only"
+  }
 }
